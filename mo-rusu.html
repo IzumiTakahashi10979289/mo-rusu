@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>モールス信号覚えてくれ>( ﾟДﾟ)</title>
+</head>
+<body>
+    <input id="bt" type="button" value="answer">
+    <p id="p"></p>
+<script>
+
+var a = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var b = ["・―","―・・・","―・―・","―・・","・","・・―・","― ―・","・・・・","・・","・― ― ―","―・―","・―・・","― ―","―・","― ― ―","・― ―・","― ―・―","・―・","・・・","―","・・―","・・・―","・― ―","―・・―","―・― ―","― ―・・"];
+var num = parseInt(Math.random()*(25-0)+0);
+const bt = document.getElementById('bt')
+var p = document.getElementById('p')
+p.innerHTML = a[num];
+bt.addEventListener("click", answerClick);
+
+  function answerClick(){
+    bt.removeEventListener('click',answerClick)
+    bt.value = "  next  ";
+    p.innerHTML = a[num]+"<p>"+b[num]+"</p>";
+    bt.addEventListener("click", nextClick);
+  }
+
+  function nextClick(){
+    num = parseInt(Math.random()*(25-0)+0);
+    bt.removeEventListener('click',nextClick)
+    bt.value = "answer";
+    p.innerHTML = a[num];
+    bt.addEventListener("click", answerClick);
+  }
+
+</script>
+</body>
+</html>
