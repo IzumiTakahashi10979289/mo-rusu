@@ -9,26 +9,32 @@
     <p id="p"></p>
 <script>
 
-var a = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-var b = ["・―","―・・・","―・―・","―・・","・","・・―・","― ―・","・・・・","・・","・― ― ―","―・―","・―・・","― ―","―・","― ― ―","・― ―・","― ―・―","・―・","・・・","―","・・―","・・・―","・― ―","―・・―","―・― ―","― ―・・"];
-var num = parseInt(Math.random()*(25-0)+0);
+var englishList = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var englishMorusuList = ["・―","―・・・","―・―・","―・・","・","・・―・","― ―・","・・・・","・・","・― ― ―","―・―","・―・・","― ―","―・","― ― ―","・― ―・","― ―・―","・―・","・・・","―","・・―","・・・―","・― ―","―・・―","―・― ―","― ―・・"];
+
+var japanList = ["ア","イ","ウ","エ","オ","カ","キ","ク","ケ","コ","サ","シ","ス","セ","ソ","タ","チ","ツ","テ","ト","ナ","ニ","ヌ","ネ","ノ","ハ","ヒ","フ","ヘ","ホ","マ","ミ","ム","メ","モ","ヤ","ユ","ヨ","ラ","リ","ル","レ","ロ","ワ","ヰ","ヱ","ヲ","ン","ー","゛","゜"];
+var japanMorusuList = ["― ―・― ―","・―","・・―","―・― ― ―","・―・・・","・―・・","―・―・・","・・・―","―・― ― ","― ― ― ―","―・―・― ","― ―・―・","― ― ―・―","・― ― ―・","― ― ―・","―・","・・―・","・― ―・","・―・― ―","・・―・・","・―・","―・―・","・・・・","― ―・―","・・― ―","―・・・","― ―・・―","― ―・・","・","―・・","―・・―","・・―・―","―","―・・・―","―・・―・","・― ―","―・・― ―","― ―","・・・","― ―・","―・― ―・","― ― ―","・―・―","―・―","・―・・―","・― ―・・","・― ― ―","・―・―・","・― ―・―","・・","・・― ―・"];
+
+var engNum = parseInt(Math.random()*(25-0)+0);
+var jpnNum = parseInt(Math.random()*(50-0)+0);
 const bt = document.getElementById('bt')
 var p = document.getElementById('p')
-p.innerHTML = a[num];
+p.innerHTML = englishList[engNum]+"<p>"+japanList[jpnNum]+"</p>";
 bt.addEventListener("click", answerClick);
 
   function answerClick(){
     bt.removeEventListener('click',answerClick)
     bt.value = "  next  ";
-    p.innerHTML = a[num]+"<p>"+b[num]+"</p>";
+    p.innerHTML = englishList[engNum]+" "+englishMorusuList[engNum]+"<p>"+japanList[jpnNum]+" "+japanMorusuList[jpnNum]+"</p>";
     bt.addEventListener("click", nextClick);
   }
 
   function nextClick(){
-    num = parseInt(Math.random()*(25-0)+0);
+    engNum = parseInt(Math.random()*(25-0)+0);
+    jpnNum = parseInt(Math.random()*(50-0)+0);
     bt.removeEventListener('click',nextClick)
     bt.value = "answer";
-    p.innerHTML = a[num];
+    p.innerHTML = englishList[engNum]+"<p>"+japanList[jpnNum]+"</p>";
     bt.addEventListener("click", answerClick);
   }
 
